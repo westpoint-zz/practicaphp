@@ -8,10 +8,10 @@ $errors = [];
 // Comprobar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validar nombre
-    if ($_POST["name"] == "") {
+    if (empty($_POST["name"])) {
         $errors['name'] = "El nombre es obligatorio.";
     } else {
-        $name = $_POST["name"]; // Falta htmlspecialchars
+        $name = htmlspecialchars($_POST["name"]); 
     }
 
     // Validar correo electrónico
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
     <label for="name">Nombre:</label>
-    <input type="text" name="name" value="<?php echo $name; ?>">
+    <input type="text" name="name" value="<?php echo isset($name) ? $name : ''; ?>">
     <span style="color:red;"><?php echo isset($errors['name']) ? $errors['name'] : ''; ?></span><br><br>
 
     <label for="email">Correo Electrónico:</label>
