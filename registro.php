@@ -11,8 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $errors['name'] = "El nombre es obligatorio.";
     } else {
-        $name = htmlspecialchars($_POST["name"]); 
+        $name = htmlspecialchars($_POST["name"]);
     }
+}
 
     // Validar correo electrónico
     if ($_POST["email"] == "") {
