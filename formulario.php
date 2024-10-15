@@ -22,14 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validar contraseña
-    if (empty($_POST["password"])) {
-        $passwordErr = "La contraseña es obligatoria.";
-    } elseif (strlen($_POST["password"]) < 6) {
-        $passwordErr = "La contraseña debe tener al menos 6 caracteres.";
+    if (empty($_POST["contraseña"])) {
+        $error_contraseña = "La contraseña es obligatoria.";
     } else {
-        $password = htmlspecialchars(trim($_POST["password"]));
+        if (strlen($_POST["contraseña"]) < 8) {
+            $error_contraseña = "La contraseña debe tener al menos 8 caracteres.";
+        }
     }
-
     // Si no hay errores, se puede procesar el registro
     if (empty($nameErr) && empty($emailErr) && empty($passwordErr)) {
         // Aquí iría el código para guardar en la base de datos, etc.
