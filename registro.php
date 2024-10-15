@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Formato de correo electrónico no válido.";
     } else {
-        $email = $_POST["email"]; // Falta htmlspecialchars
+        $email = htmlspecialchars($_POST["email"]); // Sanitización de la entrada del usuario
     }
 
     // Validar contraseña
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <span style="color:red;"><?php echo isset($errors['name']) ? $errors['name'] : ''; ?></span><br><br>
 
     <label for="email">Correo Electrónico:</label>
-    <input type="text" name="email" value="<?php echo $email; ?>">
+    <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
     <span style="color:red;"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span><br><br>
 
     <label for="password">Contraseña:</label>
